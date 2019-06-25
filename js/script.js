@@ -148,14 +148,13 @@ function tagClickHandler(event){
 }
 
 function addClickListenersToTags(){
-  console.log(wolololo);
+  console.log('wolololo');
   /* find all links to tags */
-const links = document.querySelectorAll(.post-tags a);
+const links = document.querySelectorAll('.post-tags a');
   /* START LOOP: for each link */
-  for(let link of links)
+  for(let link of links){
     /* add tagClickHandler as event listener for that link */
-    link.addTagClickHandler('click', tagClickHandler);
+    link.addTagClickHandler('click', addEventListener);
   /* END LOOP: for each link */
-}
-
+  }
 addClickListenersToTags();
