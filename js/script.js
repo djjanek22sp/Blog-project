@@ -43,7 +43,7 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles';
 
-function generateTitleLinks(){
+function generateTitleLinks(customSelector = ''){
 
   /* remove contents of titleList */
 
@@ -54,7 +54,7 @@ function generateTitleLinks(){
   let html = '';
 
 
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(optArticleSelector + customSelector);
   for(let article of articles){
 
     /* get the article id */
@@ -104,7 +104,7 @@ function generateTags(){
     for(let tag of articleTagsArray){
 
   /* generate HTML of the link */
-    const linkHTML = '<li><a href="#tag-' + tag + '">'+ tag +' &nbsp</a></li>';
+    const linkHTML = '<li><a href="#tag-' + tag + '">'+ tag +'</a>&nbsp</li>';
 
   /* add generated code to html variable */
     html = html + linkHTML;
@@ -136,7 +136,7 @@ function tagClickHandler(event){
   /* END LOOP: for each active tag link */
   }
   /* find all tag links with "href" attribute equal to the "href" constant */
-  const tagLinks = document.querySelectorAll('a[href]'=='href');
+  const tagLinks = document.querySelectorAll('a[href="'+href+'"]');
   /* START LOOP: for each found tag link */
   for(let tagLink of tagLinks){
     /* add class active */
@@ -160,3 +160,36 @@ const links = document.querySelectorAll('.post-tags a');
 }
 
 addClickListenersToTags();
+
+
+  function generateAuthors (){
+    const optArticleAuthorSelector = '.post-author'
+    optArticleSelector = '.post';
+    /* find all articles */
+    const articles = document.querySelectorAll(optArticleSelector);
+
+    /* START LOOP: for every article: */
+    for(let article of articles){
+    /* find Author wrapper */
+      const authorWrapper = article.querySelector(optArticleAuthorSelector);
+    /* make html variable with empty string */
+      let html = '';
+    /* get author from data-author attribute */
+      const articleAuthor = article.getAttribute('data-author');
+    /* generate HTML of the link */
+      const linkHTML = '<a href="'articleAuthor'"></a>';
+
+    /* add generated code to html variable */
+      html = html + linkHTML;
+    /* insert HTML of all the links into the tags wrapper */
+    authorWrapper.innerHTML = html;
+    /* END LOOP: for every article: */
+    }
+  }
+
+  function authorClickHandler () {
+
+  }
+  function addClickListerersToAuthors () {
+
+  }
