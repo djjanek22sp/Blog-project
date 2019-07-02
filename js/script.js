@@ -177,11 +177,11 @@ addClickListenersToTags();
     /* get author from data-author attribute */
       const articleAuthor = article.getAttribute('data-author');
     /* generate HTML of the link */
-      const linkHTML = '<a href="'articleAuthor'"></a>';
+      const linkHTML = '<a href="'+articleAuthor+'"></a>';
 
     /* add generated code to html variable */
       html = html + linkHTML;
-    /* insert HTML of all the links into the tags wrapper */
+    /* insert HTML of the link into the author wrapper */
     authorWrapper.innerHTML = html;
     /* END LOOP: for every article: */
     }
