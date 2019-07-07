@@ -163,7 +163,7 @@ addClickListenersToTags();
 
 
   function generateAuthors (){
-    const optArticleAuthorSelector = '.post-author'
+    const optArticleAuthorSelector = '.post-author',
     optArticleSelector = '.post';
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
@@ -177,7 +177,7 @@ addClickListenersToTags();
     /* get author from data-author attribute */
       const articleAuthor = article.getAttribute('data-author');
     /* generate HTML of the link */
-      const linkHTML = '<a href="'+articleAuthor+'"></a>';
+      const linkHTML = 'by&nbsp<a href="'+articleAuthor+'">'+articleAuthor+'</a>';
 
     /* add generated code to html variable */
       html = html + linkHTML;
@@ -187,9 +187,36 @@ addClickListenersToTags();
     }
   }
 
-  function authorClickHandler () {
+generateAuthors ();
+
+  function authorClickHandler (event) {
+    /* prevent default action for this event */
+    event.preventDefault();
+      /* make new constant named "clickedElement" and give it the value of "this" */
+    const clickedElement = this;
+    /* make a new constant "href" and read the attribute "href" of the clicked element */
+    const href = clickedElement.getAttribute('href');
+    /* find all author links with "href" attribute equal to the "href" constant */
+    const authorLinks = document.querySelectorAll('a[href="'+href+'"]');
+    /* START LOOP: for each found author link */
+    for(let authorLink of authorLinks){
+      /* add class active */
+      authorLink.classList.add('active');
+    /* END LOOP: for each found tag link */
+  }
+    /* execute function "generateTitleLinks" with article selector as argument */
+    generateTitleLinks('[data-author="''"]');
 
   }
   function addClickListerersToAuthors () {
+    /* find all links to Authors */
+  const links = document.querySelectorAll('.post-author a');
+    /* START LOOP: for each link */
+    for(let link of links)
+      /* add tagClickHandler as event listener for that link */
+      link.addEventListener('click', authorClickHandler);
+    /* END LOOP: for each link */
+  }
 
+  addClickListenersToAuthors();
   }
