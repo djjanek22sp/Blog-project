@@ -84,6 +84,11 @@ function generateTitleLinks(customSelector = ''){
 }
 generateTitleLinks();
 
+function calculateTagsParams(){
+  const params = math.Min(999999),math.Max(0);
+
+}
+
 function generateTags(){
   const optArticleTagsSelector = '.post-tags .list',
   optTagsListSelector = '.tags.list',
